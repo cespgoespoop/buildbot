@@ -1,0 +1,50 @@
+---
+  - name: Install pip3
+    package:
+      name: python3-pip3
+      state: present
+
+  - name: Install Buildbot
+    pip:
+      name: buildbot-worker
+      state: present
+
+  - name: Create buildbot user
+    user:
+      name: buildbot
+      shell: /bin/bash
+
+  - name: Create worker directory
+    file:
+      path: /home/buildbot/worker/
+      state: directory
+      owner: buildbot
+      group: buildbot
+
+  - name: Create info directory
+    file:
+      path: /home/buildbot/worker/info
+      state: directory
+      owner: buildbot
+      group: buildbot
+
+  - name: Set host info for buildbot
+    template:
+      src: host.j2
+      dest: /home/buildbot/worker/info/host
+      owner: buildbot
+      group: buildbot
+
+  - name: Set Admin info for buildbot
+    template:
+      src: admin.j2
+      dest: /home/buildbot/worker/info/admin
+      owner: buildbot
+      group: buildbot
+
+  - name: Create buildbot.tac
+    template:
+      src: buildbot.tac.j2
+      dest: /home/buildbot/worker/buildbot.tac
+      owner: buildbot
+      group: buildbot
