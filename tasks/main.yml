@@ -48,3 +48,7 @@
       dest: /home/buildbot/worker/buildbot.tac
       owner: buildbot
       group: buildbot
+
+  - name: Start buildbot-worker
+    command: buildbot-worker start worker
+    become_user: buildbot
