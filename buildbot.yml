@@ -1,0 +1,5 @@
+---
+- hosts: buildbot
+  roles:
+  - buildbot
+

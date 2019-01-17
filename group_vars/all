@@ -1,0 +1,4 @@
+---
+buildmaster_host: master.buildbot.cookietronics.net
+worker_name: "{{ ansible_distribution }}"
+worker_password: n0mn0ms00shi
